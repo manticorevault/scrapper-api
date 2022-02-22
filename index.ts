@@ -12,7 +12,7 @@ app.use(express.json());
 // The initial root route for the API.
 app.get("/", (req: any, res: { send: (arg0: string) => void; }) => {
     res.send("API Working");
-})
+});
 
 // GET product details
 app.get("/products/:productId", async (req: { params: { productId: any; }; }, res: { json: (arg0: any) => void; }) => {
@@ -51,7 +51,10 @@ app.get("/products/:productId/offers", async (req: { params: { productId: any; }
     } catch (error) {
         res.json(error)
     }
-})
+});
+
+// GET search results
+app.get("/")
 
 app.listen(PORT, () => {
     console.log("Server up and running! 🚀")
