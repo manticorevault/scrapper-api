@@ -27,7 +27,7 @@ app.get("/products/:productId", async (req: { params: { productId: any; }; }, re
     }
 });
 
-// GET products reviews
+// GET product reviews
 app.get("/products/:productId/reviews", async (req: { params: { productId: any; }; }, res: { json: (arg0: any) => void; }) => {
     const { productId } = req.params
 
@@ -39,6 +39,19 @@ app.get("/products/:productId/reviews", async (req: { params: { productId: any; 
         res.json(error)
     }
 });
+
+// GET product offers
+app.get("/products/:productId/offers", async (req: { params: { productId: any; }; }, res: { json: (arg0: any) => void; }) => {
+    const { productId } = req.params
+    
+    try {
+        const response = await request(`${ baseUrl }&url=https://www.amazon.ae/gp/offer-listing/${ productId }`)
+
+        res.json(JSON.parse(response));
+    } catch (error) {
+        res.json(error)
+    }
+})
 
 app.listen(PORT, () => {
     console.log("Server up and running! 🚀")
