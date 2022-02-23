@@ -54,7 +54,17 @@ app.get("/products/:productId/offers", async (req: { params: { productId: any; }
 });
 
 // GET search results
-app.get("/")
+app.get("/search/:searchQuery", async (req: { params: { searchQuery: any; }; }, res: { json: (arg0: any) => void; }) => {
+    const { searchQuery } = req.params;
+
+    try {
+        const response = await request(`${ baseUrl }&url=https://www.amazon.ae/s?k=${ searchQuery }`);
+
+        res.json(JSON.parse(response));
+    } catch (error) {
+        res.json(error)
+    }
+})
 
 app.listen(PORT, () => {
     console.log("Server up and running! 🚀")
