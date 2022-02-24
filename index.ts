@@ -8,8 +8,6 @@ interface RequestParams {
 
 }
 
-// const apiKey = "089dafaeab51ea38460dc92f1c63652e";
-
 const generateUrl = (apiKey: any) => `http://api.scraperapi.com?api_key=${apiKey}&autoparse=true`;
 
 app.use(express.json());
